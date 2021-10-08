@@ -79,7 +79,6 @@ Route::name('admin.')->middleware(['auth', 'admin.only'])->group(function () {
 });
 
 
-
 Route::any('/stripe/webhook', function () {
 
 //    whsec_eDgXpSVIMYNbC6Hjdtf552fk4g6qEhtZ
