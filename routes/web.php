@@ -88,55 +88,14 @@ Route::any('/stripe/webhook', function () {
 //    return view('dashboard');
 });
 
+Route::get('/test/queue', function ( ) {
 
+    Bus::dispatch(New \App\Jobs\test());
+});
 
 Route::get('/test', function ( ) {
 
-
-
-    Bus::dispatch(New \App\Jobs\test());
-
-//    return Carbon::parse('2021-5')->shortMonthName;
-
-
-//    dd( now()->startOfMonth()->subMonthsNoOverflow(5)->format('Y-m-d H:i:s'));
-
-//    $intervals = now()->startOfMonth()->subMonthsNoOverflow(5);
-
-//    $orders = Order::select(['id','created_at','total_price'])->where('created_at', '>=' , $intervals)->get();
-
-
-//        \DB::listen(function ($query){
-//                logger($query->sql);
-//                logger($query->bindings);
-//            });
-
-//    $orders = Order::query()
-//         ->select(
-//             DB::raw("CONCAT_WS('-',YEAR(created_at),MONTH(created_at)) as `year_month`"),
-//             DB::raw('count(id) as `count`'),
-//             DB::raw('sum(total_price) as `sum_up`'),
-//         )
-//            ->groupby('year_month')
-//            ->get();
-//
-//
-//    $orders =  $orders->map(function($item){
-//        $item['month'] = Carbon::parse($item['year_month'])->shortMonthName;
-//        return $item;
-//    })
-//   ->sortBy( fn($product) => strtotime( $product['year_month']) )
-//   ->values();
-//
-//    $months = $orders->pluck('month');
-//    $sumUp = $orders->pluck('sum_up');
-//
-//
-//
-//    return $sumUp;
-
-
-
+    return "testing page";
 
 });
 
