@@ -9,7 +9,7 @@
 
               Off-canvas menu for mobile, show/hide based on off-canvas menu state.
             -->
-            <div x-show="showFilter" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+            <div x-cloak x-show="showFilter" class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
 
                 <div x-show="showFilter"
                      x-transition:enter="transition-opacity ease-linear duration-300"

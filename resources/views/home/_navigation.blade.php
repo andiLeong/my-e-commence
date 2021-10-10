@@ -44,12 +44,39 @@
         </div>
 
         <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+            @guest
             <div class="flow-root">
-                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Create an account</a>
+                <a href="{{route('register')}}" class="-m-2 p-2 block font-medium text-gray-900">Create an account</a>
             </div>
             <div class="flow-root">
-                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
+                <a href="{{route('login')}}" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
             </div>
+            @endguest
+
+            @auth
+                <div class="flow-root">
+                    <span class="-m-2 p-2 block font-medium text-blue-900 cursor-not-allowed">Welcome @user_name</span>
+                </div>
+
+                @admin
+                <div class="flow-root">
+                    <a href="{{route('admin.dashboard')}}" class="-m-2 p-2 block font-medium text-gray-900">Dashboard</a>
+                </div>
+                @endadmin
+
+                <div class="flow-root">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a onclick="event.preventDefault();
+                                        this.closest('form').submit();"
+                           href="{{route('logout')}}"
+                           class="-m-2 p-2 block font-medium text-gray-900"
+                        >Log out</a>
+                    </form>
+                </div>
+
+            @endauth
+
         </div>
 
         <div class="border-t border-gray-200 py-6 px-4 space-y-6">

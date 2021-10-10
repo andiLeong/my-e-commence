@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             )->reverse()->values()
         );
 
-        Blade::directive('user_name', fn($expression) => auth()->user()?->name);
+        Blade::directive('user_name', fn($expression) => '<?php if( auth()->check()) echo auth()->user()->name; ?>'  );
 
         Blade::if('admin', function () {
             return auth()->user()->isAdmin();

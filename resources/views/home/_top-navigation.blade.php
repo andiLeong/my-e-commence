@@ -14,7 +14,7 @@
                 <a href="/login" class="text-sm font-medium text-white hover:text-gray-100">Log in</a>
             @endguest
             @auth
-                <span class="text-sm font-medium text-white hover:text-gray-100">Welcome @user_name</span>
+                <span class="text-sm font-medium text-white hover:text-gray-100">Welcome 2 @user_name</span>
                 @admin
                 <a href="{{route('admin.dashboard')}}" class="text-sm font-medium text-white hover:text-gray-100">Dashboard</a>
                 @endadmin
