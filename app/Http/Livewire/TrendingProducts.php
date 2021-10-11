@@ -13,7 +13,7 @@ class TrendingProducts extends Component
     public function load()
     {
         sleep(2);
-        $this->products = Product::take(4)->get();
+        $this->products = Product::OnSale()->take(4)->get();
     }
 
     public function render()
