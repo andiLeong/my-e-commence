@@ -40,7 +40,9 @@ jobs:
           user: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
 #          port: ${{ secrets.SSH_PORT }}
-          command: whoami
+            command: |
+              cd /tmp
+              ls -a
 
 
 #uses: fifsky/ssh-action@master
