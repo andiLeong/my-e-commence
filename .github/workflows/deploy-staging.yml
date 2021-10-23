@@ -1,0 +1,19 @@
+name: Staging-deployment
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to staging
+        uses: andiLeong/my-e-commence@staging
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: whoami
