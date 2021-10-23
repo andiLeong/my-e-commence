@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to staging
-#        uses: andiLeong/my-e-commence@staging
+        uses: andiLeong/my-e-commence@staging
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
