@@ -17,7 +17,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: whoami
+          script: 'cd /var/www/ecommence/my-e-commence && ./deploy.sh'
+#          script: whoami
 
 
 
