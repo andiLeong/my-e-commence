@@ -94,7 +94,7 @@ Route::get('/test/queue', function ( ) {
 
 Route::get('/test', function ( ) {
 
-    return "testing deployment with bash script";
+    return "testing deployment with bash script 2";
 
 });
 
