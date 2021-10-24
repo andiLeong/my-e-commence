@@ -6,7 +6,7 @@ echo "Deploying application ..."
 # Enter maintenance mode
 (php artisan down --message 'Deploying is ongoing. Please try again in a minute.') || true
     # Update codebase
-    git pull origin staging
+    git fetch origin staging
 #    git reset --hard origin/deploy
 
     # Install dependencies based on lock file
