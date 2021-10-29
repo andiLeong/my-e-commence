@@ -32,14 +32,29 @@ class Order extends Model
         return $query->where('status', 'paid');
     }
 
-    public function scopeSumupSalesGroupByYearMonth($query)
+    public function scopeSumOrderSalesForLast($query, int $span)
     {
-        return $query->select(
-                DB::raw("CONCAT_WS('-',YEAR(created_at),MONTH(created_at)) as `year_month`"),
-                DB::raw('count(id) as `count`'),
-                DB::raw('sum(total_price) as `sum_up`'),
+//        select
+//            id,
+//            year(created_at) as year,
+//            MONTHNAME(created_at) as month,
+//            count(id) as total_count,
+//            sum(total_price) as sum_total_price
+//        from
+//            orders
+//            group by year , month
+//            order by min(created_at) desc
+//            limit 6
+//        ;
+
+        return $query->selectRaw(
+                "year(created_at) as year,
+                DATE_FORMAT(created_at, '%b') as month,
+                sum(total_price) as sum_up"
             )
-            ->groupby('year_month');
+            ->orderBy('created_at', 'desc')
+            ->limit($span)
+            ->groupby('year','month');
     }
 
     public function scopeWithOrderTotalPrice($query)

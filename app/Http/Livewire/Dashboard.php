@@ -5,9 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Usecase\DashboardChartCollection;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Dashboard extends Component
@@ -47,20 +46,15 @@ class Dashboard extends Component
 
     public function loadChart()
     {
+        $orders = Order::SumOrderSalesForLast(6)->get();
+        $data = (new DashboardChartCollection($orders))->handle();
 
-        $orders = Order::query()->SumupSalesGroupByYearMonth()->get();
-        $orders =  $orders->map(function($item){
-            $item['month'] = Carbon::parse($item['year_month'])->shortMonthName;
-            return $item;
-        })
-        ->sortBy( fn($product) => strtotime( $product['year_month']) )
-        ->values();
-
-        $this->labels = $orders->pluck('month');
-        $this->sumUp = $orders->pluck('sum_up');
+        $this->labels = $data->pluck('month');
+        $this->sumUp = $data->pluck('sum');
         $this->displayChart = true;
 
     }
+
 
 
     public function render()

@@ -47,9 +47,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        Collection::macro('retrieveMonths', fn($data) => $data->map(
-                fn ($item) => today()->startOfMonth()->addMonth()->subMonth($item)->shortMonthName
-            )->reverse()->values()
+        Collection::macro('retrieveMonths', fn(int $data) =>
+
+            collect(range(1,$data))->map( fn($item) =>
+                today()->startOfMonth()->addMonth()->subMonth($item)->format('Y-M')
+            )
         );
 
         Blade::directive('user_name', fn($expression) => '<?php if( auth()->check()) echo auth()->user()->name; ?>'  );
